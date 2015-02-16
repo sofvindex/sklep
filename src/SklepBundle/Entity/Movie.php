@@ -180,4 +180,34 @@ class Movie
     {
         return $this->reviews;
     }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->reviews = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add reviews
+     *
+     * @param \SklepBundle\Entity\Review $reviews
+     * @return Movie
+     */
+    public function addReview(\SklepBundle\Entity\Review $reviews)
+    {
+        $this->reviews[] = $reviews;
+
+        return $this;
+    }
+
+    /**
+     * Remove reviews
+     *
+     * @param \SklepBundle\Entity\Review $reviews
+     */
+    public function removeReview(\SklepBundle\Entity\Review $reviews)
+    {
+        $this->reviews->removeElement($reviews);
+    }
 }

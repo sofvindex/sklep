@@ -153,4 +153,34 @@ class Purchase
     {
         return $this->movies;
     }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->movies = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add movies
+     *
+     * @param \SklepBundle\Entity\Movie $movies
+     * @return Purchase
+     */
+    public function addMovie(\SklepBundle\Entity\Movie $movies)
+    {
+        $this->movies[] = $movies;
+
+        return $this;
+    }
+
+    /**
+     * Remove movies
+     *
+     * @param \SklepBundle\Entity\Movie $movies
+     */
+    public function removeMovie(\SklepBundle\Entity\Movie $movies)
+    {
+        $this->movies->removeElement($movies);
+    }
 }
