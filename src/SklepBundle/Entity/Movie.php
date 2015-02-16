@@ -210,4 +210,9 @@ class Movie
     {
         $this->reviews->removeElement($reviews);
     }
+
+    public function __toString()
+    {
+        return $this->title;
+    }
 }

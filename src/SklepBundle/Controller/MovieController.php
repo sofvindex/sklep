@@ -102,7 +102,7 @@ class MovieController extends Controller
     /**
      * Finds and displays a Movie entity.
      *
-     * @Route("/{id}", name="_show")
+     * @Route("/movie/{id}", name="_show")
      * @Method("GET")
      * @Template()
      */
@@ -127,7 +127,7 @@ class MovieController extends Controller
     /**
      * Displays a form to edit an existing Movie entity.
      *
-     * @Route("/{id}/edit", name="_edit")
+     * @Route("/movie/{id}/edit", name="_edit")
      * @Method("GET")
      * @Template()
      */
@@ -172,7 +172,7 @@ class MovieController extends Controller
     /**
      * Edits an existing Movie entity.
      *
-     * @Route("/{id}", name="_update")
+     * @Route("/movie/{id}", name="_update")
      * @Method("PUT")
      * @Template("SklepBundle:Movie:edit.html.twig")
      */
@@ -205,7 +205,7 @@ class MovieController extends Controller
     /**
      * Deletes a Movie entity.
      *
-     * @Route("/{id}", name="_delete")
+     * @Route("/movie/{id}", name="_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, $id)
