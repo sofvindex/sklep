@@ -24,7 +24,7 @@ class Review
     /**
      * @var string
      *
-     * @ORM\Column(name="autor_", type="string", length=255)
+     * @ORM\Column(name="autor", type="string", length=255)
      */
     private $autor;
 
@@ -43,10 +43,10 @@ class Review
     private $rating;
 
     /**
-     * @var \stdClass
-     *
-     * @ORM\Column(name="movie", type="object")
-     */
+     * Relacjaz Filmem, wiele recenzji do jednego filmu
+     * @ManyToOne(targetEntity="Movie", inversedBy="reviews")
+     * @JoinColumn(name="movie_id", referencedColumnName="id")
+     **/
     private $movie;
 
 

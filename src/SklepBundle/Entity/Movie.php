@@ -50,10 +50,9 @@ class Movie
     private $price;
 
     /**
-     * @var \stdClass
-     *
-     * @ORM\Column(name="reviews", type="object")
-     */
+     * Relacja z Review, jeden film moze miec wiele recenzji
+     * @OneToMany(targetEntity="Review", mappedBy="movie")
+     **/
     private $reviews;
 
 
