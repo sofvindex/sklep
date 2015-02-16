@@ -43,10 +43,10 @@ class Purchase
     private $time;
 
     /**
-     * @ManyToMany(targetEntity="Movie")
-     * @JoinTable(name="purchases_movies",
-     *      joinColumns={@JoinColumn(name="purchase_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@JoinColumn(name="movie_id", referencedColumnName="id")}
+     * @ORM\ManyToMany(targetEntity="Movie")
+     * @ORM\JoinTable(name="purchases_movies",
+     *      joinColumns={@ORM\JoinColumn(name="purchase_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="movie_id", referencedColumnName="id")}
      *      )
      **/
     private $movies;

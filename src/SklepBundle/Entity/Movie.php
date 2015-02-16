@@ -51,7 +51,7 @@ class Movie
 
     /**
      * Relacja z Review, jeden film moze miec wiele recenzji
-     * @OneToMany(targetEntity="Review", mappedBy="movie")
+     * @ORM\OneToMany(targetEntity="Review", mappedBy="movie")
      **/
     private $reviews;
 

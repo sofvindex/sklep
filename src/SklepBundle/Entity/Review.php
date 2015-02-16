@@ -44,8 +44,8 @@ class Review
 
     /**
      * Relacjaz Filmem, wiele recenzji do jednego filmu
-     * @ManyToOne(targetEntity="Movie", inversedBy="reviews")
-     * @JoinColumn(name="movie_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Movie", inversedBy="reviews")
+     * @ORM\JoinColumn(name="movie_id", referencedColumnName="id")
      **/
     private $movie;
 
