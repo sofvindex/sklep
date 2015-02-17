@@ -28,7 +28,7 @@
                     <a  class="btn btn-info" href="{{ path('review_show', { 'id': entity.id }) }}" data-target="#myModal">Pokaz opinie ({{ entity.reviews|length }}) <i class="glyphicon glyphicon-eye-open"  ></i></a>
 
 
-                    <a class="btn btn-success" href="{{ path('purchase_new', { 'id': entity.id }) }}" style="position: relative;right: -30%;">Kup <i class="glyphicon glyphicon-shopping-cart" ></i></a>
+                    <a class="btn btn-success" onclick="addToCart({{ entity.id  }}, '{{ entity.title  }}')"style="position: relative;right: -27%;">Do koszyka<i class="glyphicon glyphicon-shopping-cart" ></i></a>
                 </div>
             </div>
         </div>
@@ -66,6 +66,49 @@
             });
         });
 
+        var items = [];
+        function addToCart(id, title)
+        {
+            // film jest juz w koszyku
+            if (items.indexOf(id)>-1)
+                return;
+            Messenger.options = {
+                extraClasses: 'messenger-fixed messenger-on-top messenger-on-right',
+                maxMessages: 15,
+                theme: 'flat'
+            }
+            if (items.length == 0)
+            {
+                var msg;
+                msg = Messenger().post({
+                  message: "",
+                  hideAfter: 1000,
+                  actions: {
+                    retry: {
+                      label: 'Potwierdź',
+                      action: function() {
+                        location.href='{{ path('purchase_new') }}?ids='+items.join(',');
+
+                      }
+                    },
+                    cancel: {
+                      action: function() {
+                        //kasuj koszyk
+                        items = [];
+                        return msg.cancel();
+                      }
+                    }
+                  }
+                });
+            }
+
+            items.push(id);
+            Messenger().post({
+              message: title,
+              hideAfter: 1000,
+        
+            });
+        }
     </script>
 
 {% endblock %}
