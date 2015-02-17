@@ -28,7 +28,7 @@
                     <a  class="btn btn-info" href="{{ path('review_show', { 'id': entity.id }) }}" data-target="#myModal">Pokaz opinie ({{ entity.reviews|length }}) <i class="glyphicon glyphicon-eye-open"  ></i></a>
 
 
-                    <a class="btn btn-success" onclick="addToCart({{ entity.id  }}, '{{ entity.title  }}')"style="position: relative;right: -27%;">Do koszyka<i class="glyphicon glyphicon-shopping-cart" ></i></a>
+                    <a class="btn btn-success" onclick="addToCart({{ entity.id  }}, '{{ entity.title  }}')"style="position: relative;right: -20%;">Do koszyka<i class="glyphicon glyphicon-shopping-cart" ></i></a>
                 </div>
             </div>
         </div>
@@ -92,9 +92,11 @@
                       }
                     },
                     cancel: {
+                      label: 'Kasuj koszyk',
                       action: function() {
                         //kasuj koszyk
                         items = [];
+                        Messenger().hideAll();
                         return msg.cancel();
                       }
                     }

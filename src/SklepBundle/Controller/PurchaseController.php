@@ -90,7 +90,14 @@ class PurchaseController extends Controller
      */
     public function newAction()
     {
+        $moviesId = explode(",", $_GET['ids']);
+
+        $em = $this->getDoctrine()->getManager();
+
+        $movies = $em->getRepository('SklepBundle:Movie')->findById($moviesId);
+        
         $entity = new Purchase();
+        $entity->setMovies($movies);
         $form   = $this->createCreateForm($entity);
 
         return array(
