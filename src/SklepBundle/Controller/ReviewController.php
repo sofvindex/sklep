@@ -100,7 +100,7 @@ class ReviewController extends Controller
     }
 
     /**
-     * Finds and displays a Review entity.
+     * Pokazuje receznje do konkretnego filmu
      *
      * @Route("/{id}", name="review_show")
      * @Method("GET")
@@ -110,16 +110,16 @@ class ReviewController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('SklepBundle:Review')->find($id);
-
-        if (!$entity) {
+        $entities = $em->getRepository('SklepBundle:Review')->findByMovie($id);
+        //\Doctrine\Common\Util\Debug::dump($entity);
+        if (!$entities) {
             throw $this->createNotFoundException('Unable to find Review entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
-            'entity'      => $entity,
+            'entities'      => $entities,
             'delete_form' => $deleteForm->createView(),
         );
     }

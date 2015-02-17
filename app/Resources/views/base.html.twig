@@ -3,11 +3,14 @@
     <head>
         <meta charset="UTF-8" />
         <title>{% block title %}Welcome!{% endblock %}</title>
+        
         {% block stylesheets %}
+
             {% stylesheets 'bundles/sklep/css/*' filter='cssrewrite' %}
                 <link rel="stylesheet" href="{{ asset_url }}" />
             {% endstylesheets %}
         {% endblock %}
+
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
@@ -39,10 +42,11 @@
 
 
         {% block javascripts %}
-            <script src="{{ asset('bundles/sklep/js/jquery.min.js') }}"></script>
-            {% javascripts 'bundles/sklep/js/*' %}
-                <script src="{{ asset_url }}"></script>
-            {% endjavascripts %}
+            
+            <script src="{{ asset('bundles/sklep/js/jquery.js') }}"></script>
+            <script src="{{ 'bundles/sklep/js/bootstrap.min.js' }}"></script>
+           
         {% endblock %}
+        
     </body>
 </html>

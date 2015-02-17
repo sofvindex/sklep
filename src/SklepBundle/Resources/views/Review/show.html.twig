@@ -1,40 +1,39 @@
-{% extends '::base.html.twig' %}
+<!-- Begin tab comment and popular posts -->
+<div class="box-info full">
+    <!-- Tab comments and popular posts -->
 
-{% block body -%}
-    <h1>Review</h1>
 
-    <table class="record_properties">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ entity.id }}</td>
-            </tr>
-            <tr>
-                <th>Autor</th>
-                <td>{{ entity.autor }}</td>
-            </tr>
-            <tr>
-                <th>Comment</th>
-                <td>{{ entity.comment }}</td>
-            </tr>
-            <tr>
-                <th>Rating</th>
-                <td>{{ entity.rating }}</td>
-            </tr>
-        </tbody>
-    </table>
+            <!-- Begin scroll wrappper -->
+            <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 325px;"><div class="scroll-widget">
+                <ul class="media-list">
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('review') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>
-        <a href="{{ path('review_edit', { 'id': entity.id }) }}">
-            Edit
-        </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
-</ul>
-{% endblock %}
+                    {% for entity in entities %}
+                    <li class="media">
+                        <a class="pull-left" href="#fakelink">
+                        <img id="{{ entity.id }}" class="" style="max-width:74px" src="{{ asset("bundles/sklep/img/loading.gif")}}" alt="Avatar">
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading"><a href="#fakelink">{{ entity.autor }}</a> <small>January 17, 2014 05:35 PM</small></h4>
+                            <p>{{ entity.comment }}</p>
+                            <p>Ocena: {% for i in (0..entity.rating)|slice(0, 10) %}
+                                <span class="glyphicon glyphicon-star-empty"></span>
+                            {% endfor %}</p>
+                        </div>
+                    </li>
+                    <script>
+                    $.getJSON( "http://uifaces.com/api/v1/random?i={{ entity.id }}", function( data ) {
+                        $('#{{ entity.id }}').attr("src", data.image_urls.bigger)
+                    });
+                    // pobieranie randomwych avatarow
+</script>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="box-footer">
+            </div>
+            </div><!-- End div .tab-pane -->
+
+
+  
+            <!-- End tab comment and popular posts -->
+        </div>
