@@ -21,7 +21,7 @@ class MovieController extends Controller
     /**
      * Lists all Movie entities.
      *
-     * @Route("/", name="")
+     * @Route("/", name="movie")
      * @Method("GET")
      * @Template()
      */

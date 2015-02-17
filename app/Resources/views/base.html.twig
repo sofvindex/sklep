@@ -11,7 +11,30 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
-        {% block body %}{% endblock %}
+    <div class="container">
+
+      <nav>
+        <h3 class="text-muted">Sklep z filmami</h3>
+        <ul class="nav nav-pills nav-justified" >
+          <li class="active"><a href="{{ path('movie') }}">Główna - filmy</a></li>
+          <li><a href="{{ path('review') }}">Recenzje</a></li>
+          <li><a href="{{ path('_new') }}">Dodaj film</a></li>
+          <li><a href="{{ path('purchase') }}">Przeglądaj zamówienia</a></li>
+          <li><a href="#">Kontakt</a></li>
+        </ul>
+      </nav>
+      <hr>
+      {% block body %}{% endblock %}
+
+
+      <!-- Site footer -->
+      <hr>
+      <div class="footer">
+        <p>&copy; Company 2013</p>
+      </div>
+
+    </div> <!-- /container -->
+        
 
 
 
