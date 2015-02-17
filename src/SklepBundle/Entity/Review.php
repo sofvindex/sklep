@@ -49,7 +49,20 @@ class Review
      **/
     private $movie;
 
+    /**
+     * @var \DateTime
+     * @ORM\Column(name="date", type="datetime")   
+     */
+    private $date;
 
+    public function __construct()
+    {
+        $this->date = new \DateTime();
+    }
+    public function getDate()
+    {
+        return $this->date;
+    }
     /**
      * Get id
      *

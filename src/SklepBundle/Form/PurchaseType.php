@@ -17,7 +17,7 @@ class PurchaseType extends AbstractType
         $builder
             ->add('name')
             ->add('email')
-            ->add('time')
+            //->add('time')
             ->add('movies')
         ;
     }

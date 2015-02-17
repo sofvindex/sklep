@@ -38,9 +38,9 @@ class Purchase
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="time", type="datetime")
+     * @ORM\Column(name="date", type="datetime")
      */
-    private $time;
+    private $date;
 
     /**
      * @ORM\ManyToMany(targetEntity="Movie")
@@ -50,7 +50,6 @@ class Purchase
      *      )
      **/
     private $movies;
-
 
     /**
      * Get id
@@ -114,9 +113,9 @@ class Purchase
      * @param \DateTime $time
      * @return Purchase
      */
-    public function setTime($time)
+    public function setDate($date)
     {
-        $this->time = $time;
+        $this->date = $date;
 
         return $this;
     }
@@ -126,9 +125,9 @@ class Purchase
      *
      * @return \DateTime 
      */
-    public function getTime()
+    public function getDate()
     {
-        return $this->time;
+        return $this->date;
     }
 
     /**
@@ -159,6 +158,7 @@ class Purchase
     public function __construct()
     {
         $this->movies = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->date = new \DateTime();
     }
 
     /**

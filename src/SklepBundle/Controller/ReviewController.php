@@ -1,7 +1,7 @@
 <?php
 
 namespace SklepBundle\Controller;
-
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -53,13 +53,10 @@ class ReviewController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('review_show', array('id' => $entity->getId())));
+            return new Response(json_encode(array('ok' => 1)));
         }
 
-        return array(
-            'entity' => $entity,
-            'form'   => $form->createView(),
-        );
+        return new Response(json_encode(array('ok' => 0)));
     }
 
     /**
