@@ -11,19 +11,23 @@
                 <blockquote>
                     {{ entity.description }}
                 </blockquote>
-
-
+                {# obliczanie średniej oceny recenzentow #}
+                {% set sumratings = 0 %}
+                {% for review in entity.reviews %}
+                  {% set sumratings = sumratings + review.rating %}
+                {% endfor %}
                 <div style="padding-bottom:-10px">
-                    <div class="col-xs-6" style="padding:0px"><strong>${{ entity.price }}</strong></div>
-                    <div class="col-xs-6 pull-right" style="padding:0px; text-align:right">Ocena: {{ entity.rating }}</div>
+                    <div class="col-xs-2" style="padding:0px"><strong>${{ entity.price }}</strong></div>
+                    <div class="col-xs-7" style="padding:0px;">Ocena: recenzentow: <strong>{{ (sumratings/entity.reviews|length)|round }}</strong></div>
+                    <div class="col-xs-3" style="padding:0px;">Redakcji: <strong>{{ entity.rating }}</strong></div>
                 </div>
             </div>
             <div class="panel-footer">
                 <div class="coll-md-12">
-                    <a  class="btn btn-info" href="{{ path('review_show', { 'id': entity.id }) }}" data-target="#myModal">Pokaz opinie <i class="glyphicon glyphicon-eye-open"  ></i></a>
+                    <a  class="btn btn-info" href="{{ path('review_show', { 'id': entity.id }) }}" data-target="#myModal">Pokaz opinie ({{ entity.reviews|length }}) <i class="glyphicon glyphicon-eye-open"  ></i></a>
 
 
-                    <a class="btn btn-success" href="{{ path('purchase_new', { 'id': entity.id }) }}" style="position: relative;right: -41%;">Kup <i class="glyphicon glyphicon-shopping-cart" ></i></a>
+                    <a class="btn btn-success" href="{{ path('purchase_new', { 'id': entity.id }) }}" style="position: relative;right: -30%;">Kup <i class="glyphicon glyphicon-shopping-cart" ></i></a>
                 </div>
             </div>
         </div>

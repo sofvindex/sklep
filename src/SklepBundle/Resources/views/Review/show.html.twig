@@ -7,7 +7,7 @@
             <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto;"><div class="scroll-widget">
                 <ul class="media-list">
 
-                    {% for entity in entities|reverse %}
+                    {% for entity in entities|reverse|default('var is not defined')  %}
                     <li class="media">
                         <a class="pull-left" href="#fakelink">
                         <img id="{{ entity.id }}" class="" style="max-width:74px" src="{{ asset("bundles/sklep/img/loading.gif")}}" alt="Avatar">
@@ -59,7 +59,7 @@ $("#addNew form").submit(function() {
            success: function(data)
            {
                //if (data.ok ==) // show response from the php script.
-               $("#myModal .modal-body").load('{{ path('review_show', {'id': entities[0].movie.id})}}', function() { 
+               $("#myModal .modal-body").load('{{ path('review_show', {'id': movie.id})}}', function() { 
                      //$("#myModal").modal("show"); 
                });
 

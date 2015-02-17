@@ -109,7 +109,8 @@ class ReviewController extends Controller
 
         $entity = new Review();
         // Ustawianie filmu
-        $entity->setMovie($em->getRepository('SklepBundle:Movie')->find($id));
+        $movie = $em->getRepository('SklepBundle:Movie')->find($id);
+        $entity->setMovie($movie);
         
         $form   = $this->createCreateForm($entity);
 
@@ -117,9 +118,6 @@ class ReviewController extends Controller
 
         $entities = $em->getRepository('SklepBundle:Review')->findByMovie($id);
         //\Doctrine\Common\Util\Debug::dump($entity);
-        if (!$entities) {
-            throw $this->createNotFoundException('Unable to find Review entity.');
-        }
 
         $deleteForm = $this->createDeleteForm($id);
 
@@ -128,6 +126,7 @@ class ReviewController extends Controller
             'form'   => $form->createView(),
             'entities'      => $entities,
             'delete_form' => $deleteForm->createView(),
+            'movie' => $movie
         );
     }
 
