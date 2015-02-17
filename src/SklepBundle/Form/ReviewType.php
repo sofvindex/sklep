@@ -17,8 +17,14 @@ class ReviewType extends AbstractType
         $builder
             ->add('autor')
             ->add('comment')
-            ->add('rating')
-            ->add('movie')
+            ->add('rating','choice', array(
+                            'choices'   => array('1' => 'Beznadziejny', '2' => 'Słaby', '3' => 'Ujdzie', '4'=> 'Dobry', '5'=>'Świetny'),
+                            'required'  => true,
+                            'multiple'  => false,                          
+                            'label' => 'Ocena',
+
+                  ))
+            ->add('movie',null,array( 'attr'=>array('style'=>'display:none;'), 'label_attr'=>array('style'=>'display:none;') ))
         ;
     }
     

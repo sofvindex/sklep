@@ -110,6 +110,14 @@ class ReviewController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
+        $entity = new Review();
+        // Ustawianie filmu
+        $entity->setMovie($em->getRepository('SklepBundle:Movie')->find($id));
+        
+        $form   = $this->createCreateForm($entity);
+
+        
+
         $entities = $em->getRepository('SklepBundle:Review')->findByMovie($id);
         //\Doctrine\Common\Util\Debug::dump($entity);
         if (!$entities) {
@@ -119,6 +127,8 @@ class ReviewController extends Controller
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
+            'entity' => $entity,
+            'form'   => $form->createView(),
             'entities'      => $entities,
             'delete_form' => $deleteForm->createView(),
         );

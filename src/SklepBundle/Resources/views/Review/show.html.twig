@@ -4,7 +4,7 @@
 
 
             <!-- Begin scroll wrappper -->
-            <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 325px;"><div class="scroll-widget">
+            <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto;"><div class="scroll-widget">
                 <ul class="media-list">
 
                     {% for entity in entities %}
@@ -25,15 +25,48 @@
                         $('#{{ entity.id }}').attr("src", data.image_urls.bigger)
                     });
                     // pobieranie randomwych avatarow
-</script>
+            </script>
                     {% endfor %}
                 </ul>
             </div>
             <div class="box-footer">
+                <div id="addNew" style="display:none;"> 
+
+                    {{ form_start(form) }}
+                        {% do form.submit.setRendered %}
+                    {{ form_end(form) }}
+
+
+                </div>
+                 <button type="button" class="btn btn-success" onclick="recenzje();">Dodaj recenzje</button>
             </div>
             </div><!-- End div .tab-pane -->
 
 
-  
+    
             <!-- End tab comment and popular posts -->
         </div>
+<script>
+$("#addNew form").submit(function() {
+
+    var url = "{{ path('review_create')}}"; // the script where you handle the form input.
+
+    $.ajax({
+           type: "POST",
+           url: url,
+           data: $("#addNew form").serialize(), // serializes the form's elements.
+           success: function(data)
+           {
+               alert(data); // show response from the php script.
+           }
+         });
+
+    return false; // avoid to execute the actual submit of the form.
+});
+function recenzje()
+{
+    $('#addNew').fadeToggle('slow');
+
+    $("#addNew form").submit();
+}
+</script>

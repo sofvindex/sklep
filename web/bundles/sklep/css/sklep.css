@@ -160,5 +160,9 @@ blockquote p {
 .scroll-widget{
     overflow: hidden;
     width: auto;
-    height: 325px;
+
+}
+.modal .modal-body {
+    max-height: 400px;
+    overflow-y: auto;
 }
