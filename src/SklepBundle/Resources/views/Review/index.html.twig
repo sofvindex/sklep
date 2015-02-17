@@ -1,45 +1,37 @@
 {% extends '::base.html.twig' %}
-
 {% block body -%}
-    <h1>Review list</h1>
+<div class="box-info full">
+    <!-- Tab comments and popular posts -->
+    <!-- Begin scroll wrappper -->
+    <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto;"><div class="scroll-widget">
+        <ul class="media-list">
+            {% for entity in entities|reverse|default('var is not defined')  %}
+            <li class="media">
+                <a class="pull-left" href="#fakelink">
+                <img id="{{ entity.id }}" class="" style="max-width:74px" src="{{ asset("bundles/sklep/img/loading.gif")}}" alt="Avatar">
+                </a>
+                <div class="media-body">
+                    <h4 class="media-heading"><a href="#fakelink">{{ entity.autor }}</a>
+                    <small>o Filmie - </small>  {{ entity.movie.title|default('') }} <small>{{ entity.date|date('M, d-Y H:i:s') }} </small></h4>
+                    <p>{{ entity.comment }}</p>
+                    <p>Ocena: {% for i in (1..entity.rating)|slice(0, 5) %}
+                    <span class="glyphicon glyphicon-star-empty"></span>
+                    {% endfor %}</p>
+                </div>
+            </li>
+            <script>
+                                $.getJSON( "http://uifaces.com/api/v1/random?i={{ entity.id }}", function( data ) {
+                                    $('#{{ entity.id }}').attr("src", data.image_urls.bigger)
+                                });
+                                // pobieranie randomwych avatarow
+            </script>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="box-footer">
 
-    <table class="records_list">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Autor</th>
-                <th>Comment</th>
-                <th>Rating</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for entity in entities %}
-            <tr>
-                <td><a href="{{ path('review_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-                <td>{{ entity.autor }}</td>
-                <td>{{ entity.comment }}</td>
-                <td>{{ entity.rating }}</td>
-                <td>
-                <ul>
-                    <li>
-                        <a href="{{ path('review_show', { 'id': entity.id }) }}">show</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('review_edit', { 'id': entity.id }) }}">edit</a>
-                    </li>
-                </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+        </div><!-- End div .tab-pane -->
 
-        <ul>
-        <li>
-            <a href="{{ path('review_new') }}">
-                Create a new entry
-            </a>
-        </li>
-    </ul>
+        <!-- End tab comment and popular posts -->
+    </div>
     {% endblock %}

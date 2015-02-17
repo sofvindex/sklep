@@ -9,7 +9,8 @@
             </div>
             <div class="panel-body" style="padding-bottom:5px">
                 <blockquote>
-                    {{ entity.description }}
+                    {{ entity.description|length > 250 ? entity.description|slice(0, 250) ~ '...' : entity.description  }}
+                   
                 </blockquote>
                 {# obliczanie średniej oceny recenzentow #}
                 {% set sumratings = 0 %}
@@ -18,7 +19,7 @@
                 {% endfor %}
                 <div style="padding-bottom:-10px">
                     <div class="col-xs-2" style="padding:0px"><strong>${{ entity.price }}</strong></div>
-                    <div class="col-xs-7" style="padding:0px;">Ocena: recenzentow: <strong>{{ (sumratings/entity.reviews|length)|round }}</strong></div>
+                    <div class="col-xs-7" style="padding:0px;">Ocena: recenzentow: <strong>{{ (sumratings/(entity.reviews|length+1))|round }}</strong></div>
                     <div class="col-xs-3" style="padding:0px;">Redakcji: <strong>{{ entity.rating }}</strong></div>
                 </div>
             </div>
@@ -54,12 +55,6 @@
     </div>
     <!-- /.modal-dialog -->
 </div>
-
-
-{% endblock %}
-
-{% block javascripts %}
-    {{ parent() }}
     <script type="text/javascript">
         $("a[data-target=#myModal]").click(function(ev) {
             ev.preventDefault();
@@ -72,4 +67,8 @@
         });
 
     </script>
+
 {% endblock %}
+
+
+

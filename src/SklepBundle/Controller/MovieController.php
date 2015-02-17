@@ -44,16 +44,22 @@ class MovieController extends Controller
      */
     public function createAction(Request $request)
     {
+
+
         $entity = new Movie();
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
 
-        if ($form->isValid()) {
+        if ($_POST['password']!=='test'){
+            $this->get('session')->getFlashBag()->add('notice', array('msg'=>'Złe hasło draniu!', 'type'=>'error'));
+        } elseif ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('_show', array('id' => $entity->getId())));
+             $this->get('session')->getFlashBag()->add('notice', array('msg'=>'Dodałes film!', 'type'=>'success'));
+
+            return $this->redirect($this->generateUrl('movie'));
         }
 
         return array(
@@ -75,7 +81,8 @@ class MovieController extends Controller
             'action' => $this->generateUrl('_create'),
             'method' => 'POST',
         ));
-
+        
+        //$form->add('input', 'password', array('label' => 'Hasło'));
         $form->add('submit', 'submit', array('label' => 'Create'));
 
         return $form;

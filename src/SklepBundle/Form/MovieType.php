@@ -17,8 +17,22 @@ class MovieType extends AbstractType
         $builder
             ->add('title')
             ->add('description')
-            ->add('rating')
-            ->add('price')
+            ->add('rating','choice', array(
+                            'choices'   => array('1' => 'Beznadziejny', '2' => 'Słaby', '3' => 'Ujdzie', '4'=> 'Dobry', '5'=>'Świetny'),
+                            'required'  => true,
+                            'multiple'  => false,                          
+                            'label' => 'Ocena',
+
+                  ))
+            ->add('price', 'money', array(
+                    'attr'=>array(
+                        'stepby'=>'0.01',
+                        'type'=>'number'
+                        ),
+                    'data' => '20.99',
+
+                ))
+            
         ;
     }
     

@@ -11,6 +11,15 @@
             {% endstylesheets %}
         {% endblock %}
 
+        {% block javascripts %}
+            
+            <script src="{{ asset('bundles/sklep/js/jquery.js') }}"></script>
+            <script src="{{ asset('bundles/sklep/js/bootstrap.min.js') }}"></script>
+            <script src="{{ asset('bundles/sklep/js/messenger.min.js') }}"></script>
+            <script src="{{ asset('bundles/sklep/js/messenger-theme-future.js') }}"></script>
+
+           
+        {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
@@ -40,13 +49,25 @@
         
 
 
+    <script type="text/javascript">
+    // ustawienia wyglądu pluginu wyswietlajacego dymki
+       Messenger.options = {
+        extraClasses: 'messenger-fixed messenger-on-top',
+        theme: 'future'
+    }
 
-        {% block javascripts %}
-            
-            <script src="{{ asset('bundles/sklep/js/jquery.js') }}"></script>
-            <script src="{{ 'bundles/sklep/js/bootstrap.min.js' }}"></script>
-           
-        {% endblock %}
+    {# wyświetlanie wiadomosci z sesji np, ze zle haslo #}
+
+    {% for flashMessage in app.session.flashbag.get('notice') %}
+         Messenger().post({
+          message: '{{ flashMessage.msg }}',
+          type: '{{ flashMessage.type }}',
+          showCloseButton: true
+        });   
+
+    {% endfor %}
+
+    </script>
         
     </body>
 </html>

@@ -90,10 +90,11 @@ blockquote {
   background: #f9f9f9;
   border-left: 10px solid #ccc;
   margin: 0em 0px;
-
+  font-size:12px;
   top: -15px;
   position: relative;
   left: -15px;
+  max-height: 200px;
 }
 
 blockquote p {
