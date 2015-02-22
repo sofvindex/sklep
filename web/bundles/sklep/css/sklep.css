@@ -1,5 +1,8 @@
       body {
         padding-top: 20px;
+		background: ##00aa77;
+		background-image: url("../img/zenbg.png");
+		background-repeat: repeat;
       }
       
       .footer {
@@ -7,6 +10,7 @@
         margin-top: 40px;
         padding-top: 40px;
         padding-bottom: 40px;
+        color: black;
       }
       
       /* Main marketing message and sign up button */
@@ -166,4 +170,8 @@ blockquote p {
 .modal .modal-body {
     max-height: 400px;
     overflow-y: auto;
+}
+
+.form-group, h1, table, .list-group {
+	color: black;
 }
